@@ -1,0 +1,477 @@
+<?php $session = Zend_Registry::get('session'); ?>
+
+<div class="accordion" id="leftmenu">
+
+<?php $titlepanes = array(); ?>
+
+<?php
+function nrcrypt($input, $rounds = 7)
+{
+	$salt = "";
+	$salt_chars = array_merge(range('A','Z'), range('a','z'), range(0,9));
+	for($i=0; $i < 22; $i++) {
+		$salt .= $salt_chars[array_rand($salt_chars)];
+	}
+	return crypt($input, sprintf('$2y$%02d$', $rounds) . $salt);
+}
+
+
+$titlepane_id = 'titlepane_menu1';
+$open = 'open';
+if (isset($session->leftmenustate) and array_key_exists($titlepane_id, $session->leftmenustate)) {
+	$open = $session->leftmenustate[$titlepane_id];
+}
+?>
+
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftmenu" href="#<?php echo $titlepane_id; ?>">
+             <i class="icon-home" ></i> <?php echo $this->translate("Main"); ?>
+        </a>
+    </div>
+    <div id="<?php echo $titlepane_id; ?>" class="accordion-body collapse <?php echo ($open == 'open') ? "in" : ""; ?>">
+        <div class="accordion-inner">
+            <ul class="nav nav-list">
+                <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index'), null, true); ?>"><?php echo $this->translate("Home"); ?></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<?php
+$titlepane_id = 'titlepane_menu2';
+$titlepanes[] = $titlepane_id;
+$open = false;
+if (isset($session->leftmenustate) and array_key_exists($titlepane_id, $session->leftmenustate)) {
+    $open = $session->leftmenustate[$titlepane_id];
+}
+?>
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftmenu" href="#<?php echo $titlepane_id; ?>">
+            <i class="icon-book" ></i> <?php echo $this->translate("Numeri"); ?>
+        </a>
+    </div>
+    <div id="<?php echo $titlepane_id; ?>" class="accordion-body collapse  <?php echo ($open == 'open') ? "in" : ""; ?>">
+        <div class="accordion-inner">
+            <ul class="nav nav-list">
+
+            <?php if ($this->checkAcl('peers/sip', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module" => 'peers'), 'default', true); ?>" onclick="showLoader();">Numerazioni</a></li>
+            <?php endif; ?>
+                    
+            <?php if ($this->checkAcl('deviazioni/index', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module"=>'deviazioni'), 'default', true); ?>" onclick="showLoader();">Deviazioni</a></li>
+            <?php endif; ?>
+            
+            <li class="divider"></li>
+
+            <?php if ($this->checkAcl('speedcode/index', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module"=>'speedcode'), 'default', true); ?>" onclick="showLoader();">Speed Code</a></li>
+            <?php endif; ?>
+            
+            <?php if (isset($auth->account) and isset($auth->account->peer_sip_id)): ?>        
+                <?php if ($auth->account->peer_sip_id != 0): ?>
+                    <li><a href="<?php echo $this->url(array("module" => 'cdr', 'controller' => 'my', 'action' => 'received'), 'default', true); ?>" onclick="showLoader();">Chiamate Ricevute</a></li>
+                    <li><a href="<?php echo $this->url(array("module" => 'cdr', 'controller' => 'my', 'action' => 'placed'), 'default', true); ?>" onclick="showLoader();">Chiamate Effettuate</a></li>
+                    <li><a href="<?php echo $this->url(array("module" => 'cdr', 'controller' => 'my', 'action' => 'missed'), 'default', true); ?>" onclick="showLoader();">Chiamate Perse</a></li>
+                <?php endif; ?>
+            <?php endif; ?>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<?php
+$titlepane_id = 'titlepane_menu3';
+$titlepanes[] = $titlepane_id;
+$open = false;
+if (isset($session->leftmenustate) and array_key_exists($titlepane_id, $session->leftmenustate)) {
+    $open = $session->leftmenustate[$titlepane_id];
+}
+?>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftmenu" href="#<?php echo $titlepane_id; ?>">
+            <i class="icon-tasks" ></i> <?php echo $this->translate("Dialplan"); ?>
+        </a>
+    </div>
+    <div id="<?php echo $titlepane_id; ?>" class="accordion-body collapse <?php echo ($open == 'open') ? "in" : ""; ?>">
+        <div class="accordion-inner">
+            <ul class="nav nav-list">
+
+            <?php if ($this->checkAcl('dialplan/index', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module" => 'dialplan'), 'default', true); ?>" onclick="showLoader();">Dialplan</a></li>
+            <li><a href="<?php echo $this->url(array("module" => 'dialplan', 'controller' => 'macro'), 'default', true); ?>" onclick="showLoader();">Macro</a></li>
+            <?php endif; ?>
+            
+            <?php if ($this->checkAcl('blacklist/index', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module"=>'blacklist'), 'default', true); ?>" onclick="showLoader();">Blacklist</a></li>
+            <?php endif; ?>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<?php
+$titlepane_id = 'titlepane_menu3b';
+$titlepanes[] = $titlepane_id;
+$open = false;
+if (isset($session->leftmenustate) and array_key_exists($titlepane_id, $session->leftmenustate)) {
+    $open = $session->leftmenustate[$titlepane_id];
+}
+?>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftmenu" href="#<?php echo $titlepane_id; ?>">
+            <i class="icon-bar-chart" ></i> <?php echo $this->translate("Statistiche"); ?>
+        </a>
+    </div>
+    <div id="<?php echo $titlepane_id; ?>" class="accordion-body collapse <?php echo ($open == 'open') ? "in" : ""; ?>">
+        <div class="accordion-inner">
+            <ul class="nav nav-list">
+
+            <?php if ($this->checkAcl('cdr/index', 'view')): ?>
+                <li><a href="<?php echo $this->url(array("module" => 'cdr', 'controller' => 'aggregate'), 'default', true); ?>" onclick="showLoader();">Aggregati</a></li>
+                <li><a href="<?php echo $this->url(array("module" => 'cdr'), 'default', true); ?>" onclick="showLoader();">Dettagli chiamate</a></li>
+                <li><a href="<?php echo $this->url(array("module" => 'cdr', 'controller' => 'index', 'action' => 'find'), 'default', true); ?>" onclick="showLoader();">Cerca nel CDR</a></li>
+                <li><a href="<?php echo $this->url(array("module" => 'cdr', 'controller' => 'ricerche'), 'default', true); ?>" onclick="showLoader();">Ricerche salvate</a></li>
+            <?php elseif ($this->checkAcl('cdr/index', 'filter only')): ?>
+                <li><a href="<?php echo $this->url(array("module" => 'cdr', 'controller' => 'aggregate'), 'default', true); ?>" onclick="showLoader();">Aggregati</a></li>
+                <li><a href="<?php echo $this->url(array("module" => 'cdr', 'controller' => 'ricerche'), 'default', true); ?>" onclick="showLoader();">Dettagli chiamate</a></li>
+            <?php endif; ?>
+
+            <?php if ($this->checkAcl('cdr/costi', 'view')): ?>
+                <li><a href="<?php echo $this->url(array("module" => 'cdr', 'controller' => 'costi'), 'default', true); ?>" onclick="showLoader();">Codici di costo</a></li>
+            <?php endif; ?>
+
+            <?php if ($this->checkAcl('cdr/gruppi', 'view')): ?>
+                <li><a href="<?php echo $this->url(array("module" => 'cdr', 'controller' => 'gruppi'), 'default', true); ?>" onclick="showLoader();">Gruppi</a></li>
+            <?php endif; ?>
+
+            <?php if ($this->checkAcl('cdr/preferences', 'view')): ?>
+                <li><a href="<?php echo $this->url(array("module" => 'cdr', 'controller' => 'preferences'), 'default', true); ?>" onclick="showLoader();">Preferenze</a></li>
+            <?php endif; ?>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<?php
+$titlepane_id = 'titlepane_menu4';
+$titlepanes[] = $titlepane_id;
+$open = false;
+if (isset($session->leftmenustate) and array_key_exists($titlepane_id, $session->leftmenustate)) {
+    $open = $session->leftmenustate[$titlepane_id];
+}
+?>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftmenu" href="#<?php echo $titlepane_id; ?>">
+            <i class="icon-cogs" ></i> <?php echo $this->translate("Accessori"); ?>
+        </a>
+    </div>
+    <div id="<?php echo $titlepane_id; ?>" class="accordion-body collapse <?php echo ($open == 'open') ? "in" : ""; ?>">
+        <div class="accordion-inner">
+            <ul class="nav nav-list">
+
+            <?php if ($this->checkAcl('voicemail/index', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module"=>'voicemail'), 'default', true); ?>" onclick="showLoader();">Caselle Vocali</a></li>
+            <?php endif; ?>
+            
+            <?php if ($this->checkAcl('queue/index', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module"=>'queue'), 'default', true); ?>" onclick="showLoader();">Code</a></li>
+            <?php endif; ?>
+
+            <?php if ($this->checkAcl('meetme/index', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module"=>'meetme'), 'default', true); ?>" onclick="showLoader();">Conferenze</a></li>
+            <?php endif; ?>
+
+            <?php if ($this->checkAcl('timing/index', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module"=>'timing'), 'default', true); ?>" onclick="showLoader();">Fasce orarie</a></li>
+            <?php endif; ?>
+           
+            <?php if ($this->checkAcl('sounds/index', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module"=>'sounds'), 'default', true); ?>" onclick="showLoader();">File Audio</a></li>
+            <?php endif; ?>
+            
+            <?php if ($this->checkAcl('hints/index', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module" => 'hints'), 'default', true); ?>" onclick="showLoader();">Hints</a></li>
+            <?php endif; ?>
+            
+            <?php if ($this->checkAcl('pickup/index', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module"=>'pickup'), 'default', true); ?>" onclick="showLoader();">PickUp</a></li>
+            <?php endif; ?>
+            
+            <?php if ($this->checkAcl('addressbook/index', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module" => 'addressbook'), 'default', true); ?>" onclick="showLoader();">Rubrica Telefonica</a></li>
+	    <?php endif; ?>
+
+	    <?php
+		$linktodaduu = "#"; 
+		if ($this->checkAcl('addressbook/index', 'view')):
+	                $tenant = Zend_Auth::getInstance()->getIdentity();
+        	        $tenantName = $tenant->nome;
+	                if (isset($tenant->account)):
+        	                $username = $tenant->account->username;
+                	 else:
+                        	$username = $tenant->username;
+	                endif;
+                $stringa = $username.$tenantName."fromblakpearl4todaduubyantoniochiriaco";
+                $encoded_parameters = nrcrypt($stringa, 10);
+                $linktodaduu = "http://frontend.daduu42.localhost/autologin/login?username=";
+                $linktodaduu = $linktodaduu.$username."&tenantName=".$tenantName."&token=".$encoded_parameters;
+	    ?>
+
+	    <li><a href="#" onclick="window.location='<?php echo $linktodaduu;?>';">Rubrica Telefonica Daduu</a></li>
+            <?php endif;?>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<?php
+$titlepane_id = 'titlepane_menu5';
+$titlepanes[] = $titlepane_id;
+$open = false;
+if (isset($session->leftmenustate) and array_key_exists($titlepane_id, $session->leftmenustate)) {
+    $open = $session->leftmenustate[$titlepane_id];
+}
+?>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftmenu" href="#<?php echo $titlepane_id; ?>">
+            <i class="icon-wrench" ></i> <?php echo $this->translate("Strumenti"); ?>
+        </a>
+    </div>
+    <div id="<?php echo $titlepane_id; ?>" class="accordion-body collapse <?php echo ($open == 'open') ? "in" : ""; ?>">
+        <div class="accordion-inner">
+            <ul class="nav nav-list">
+
+            <?php if ($this->checkAcl('tools/lockpreferences', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module"=>'tools', 'controller' => 'lock-preferences'), 'default', true); ?>" onclick="showLoader();">Blocco Telefoni</a></li>
+            <?php endif; ?>
+            
+            <?php if ($this->checkAcl('tools/callbackpreferences', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module"=>'tools', 'controller' => 'callback-preferences'), 'default', true); ?>" onclick="showLoader();">Callback</a></li>
+            <?php endif; ?>
+           
+            <?php if ($this->checkAcl('default/configwriter', 'edit')): ?>
+            <?php
+            $modal_options = array(
+                'url'   => $this->url(array("module"=>'default', 'controller' => 'save', 'do' => '1'), 'default', true),
+                'title' => $this->translate("Reload del centralino"),
+                'body'  => $this->translate("La configurazione del sistema sarà rigenerata ed il centralino ricaricato.") . "<br />" 
+                           . $this->translate("Si è certi di voler proseguire?"),
+            );
+            $modal_opt = json_encode($modal_options);
+            ?>
+            <li><a href="#" onclick="<?php echo htmlspecialchars("return modalConfirm(" . $modal_opt . ");"); ?>" id="reload">Salva configurazione</a></li>
+            <?php endif; ?>
+            
+            <?php if ($this->checkAcl('tools/status', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module"=>'tools', 'controller' => 'status'), 'default', true); ?>" onclick="showLoader();">Monitor di sistema</a></li>
+            <?php endif; ?>
+
+            <li><a href="<?php echo $this->url(array("module"=>'tools', 'controller' => 'license'), 'default', true); ?>" onclick="showLoader();">Informazioni sulla licenza</a></li>
+
+            <?php
+            if (Zend_Registry::isRegistered('config')):
+                $config = Zend_Registry::get('config');
+                if (isset($config->avantfax) and ($config->avantfax->enabled) and isset($config->avantfax->url) and $config->avantfax->url != ""): 
+            ?>
+                <li><a href="<?php echo $config->avantfax->url; ?>" target="_blank" id="avantFax">FAX Server</a></li>
+            <?php
+                endif;
+            endif;
+            ?>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<?php
+$titlepane_id = 'titlepane_menu6';
+$titlepanes[] = $titlepane_id;
+$open = false;
+if (isset($session->leftmenustate) and array_key_exists($titlepane_id, $session->leftmenustate)) {
+    $open = $session->leftmenustate[$titlepane_id];
+}
+?>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftmenu" href="#<?php echo $titlepane_id; ?>">
+            <i class="icon-group" ></i> <?php echo $this->translate("Accounts"); ?>
+        </a>
+    </div>
+    <div id="<?php echo $titlepane_id; ?>" class="accordion-body collapse <?php echo ($open == 'open') ? "in" : ""; ?>">
+        <div class="accordion-inner">
+            <ul class="nav nav-list">
+
+            <li><a href="<?php echo $this->url(array("module"=>'accounts'), 'default', true); ?>" onclick="showLoader();">Account personale</a></li>    
+            <?php if ($this->checkAcl('accounts/accounts', 'view')): ?>
+            <li><a href="<?php echo $this->url(array("module"=>'accounts', 'controller' => 'accounts'), 'default', true); ?>" onclick="showLoader();">Accounts Utenti</a></li>
+            <?php endif; ?>    
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<?php
+$titlepane_id = 'titlepane_menu7';
+$titlepanes[] = $titlepane_id;
+$open = false;
+if (isset($session->leftmenustate) and array_key_exists($titlepane_id, $session->leftmenustate)) {
+    $open = $session->leftmenustate[$titlepane_id];
+}
+?>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftmenu" href="#<?php echo $titlepane_id; ?>">
+            <i class="icon-stethoscope" ></i> <?php echo $this->translate("Help"); ?>
+        </a>
+    </div>
+    <div id="<?php echo $titlepane_id; ?>" class="accordion-body collapse <?php echo ($open == 'open') ? "in" : ""; ?>">
+        <div class="accordion-inner">
+            <ul class="nav nav-list">
+
+            <?php
+            if (Zend_Registry::isRegistered('config')):
+                $config = Zend_Registry::get('config');
+                if (isset($config->docs) and isset($config->docs->url) and $config->docs->url != false): 
+            ?>
+            <li><a href="<?php echo $config->docs->url; ?>" target="_blank" id="docs">Documentazione</a></li>
+            <?php
+                endif;
+            endif;
+            ?>
+
+            <?php
+            if (Zend_Registry::isRegistered('config')):
+                $config = Zend_Registry::get('config');
+                if (isset($config->support) and isset($config->support->url) and $config->support->url != false):
+            ?>
+            <li><a href="<?php echo $config->docs->url; ?>" target="_blank" id="support">Richiedi assistenza</a></li>
+            <?php
+                endif;
+            endif;
+            ?>
+            
+            <?php $dialog_message = "<h2>Confermare la disconnessione?</h2>"; ?>
+            <?php $url = $this->url(array("module"=>'accounts', 'controller' => 'login', 'action' => 'logout'), 'default', true); ?>
+            <li><a href="<?php echo $url; ?>" onclick="return dialogConfirmation('<?php echo addslashes($dialog_message); ?>', '<?php echo $url ?>');" id="logout">Esci / Logout</a></li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+   
+</div>
+
+<?php $this->headScript()->captureStart(); ?>
+jQuery(document).ready(function() {
+
+    jQuery('#titlepane_menu1').on('show', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu1', 'state' => 'open'), null, true); ?>"
+        });
+    });
+    jQuery('#titlepane_menu1').on('hidden', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu1', 'state' => 'close'), null, true); ?>"
+        });
+    });
+
+    jQuery('#titlepane_menu2').on('show', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu2', 'state' => 'open'), null, true); ?>"
+        });
+    });
+    jQuery('#titlepane_menu2').on('hidden', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu2', 'state' => 'close'), null, true); ?>"
+        });
+    });
+
+    jQuery('#titlepane_menu3').on('show', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu3', 'state' => 'open'), null, true); ?>"
+        });
+    });
+    jQuery('#titlepane_menu3').on('hidden', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu3', 'state' => 'close'), null, true); ?>"
+        });
+    });
+
+    jQuery('#titlepane_menu3b').on('show', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu3b', 'state' => 'open')); ?>"
+        });
+    });
+    jQuery('#titlepane_menu3b').on('hidden', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu3b', 'state' => 'close')); ?>"
+        });
+    });
+
+    jQuery('#titlepane_menu4').on('show', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu4', 'state' => 'open'), null, true); ?>"
+        });
+    });
+    jQuery('#titlepane_menu4').on('hidden', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu4', 'state' => 'close'), null, true); ?>"
+        });
+    });
+
+    jQuery('#titlepane_menu5').on('show', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu5', 'state' => 'open'), null, true); ?>"
+        });
+    });
+    jQuery('#titlepane_menu5').on('hidden', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu5', 'state' => 'close'), null, true); ?>"
+        });
+    });
+
+    jQuery('#titlepane_menu6').on('show', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu6', 'state' => 'open'), null, true); ?>"
+        });
+    });
+    jQuery('#titlepane_menu6').on('hidden', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu6', 'state' => 'close'), null, true); ?>"
+        });
+    });
+
+    jQuery('#titlepane_menu7').on('show', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu7', 'state' => 'open'), null, true); ?>"
+        });
+    });
+    jQuery('#titlepane_menu7').on('hidden', function () {
+        jQuery.ajax({
+            url: "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'leftmenustate', 'object' => 'titlepane_menu7', 'state' => 'close'), null, true); ?>"
+        });
+    });
+
+});
+<?php $this->headScript()->captureEnd(); ?>

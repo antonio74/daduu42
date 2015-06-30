@@ -1,0 +1,636 @@
+/* Resets
+--------------------------------------------------------------------------------*/
+
+ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, body, html, p, blockquote, fieldset, input {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style: none;
+}
+
+fieldset {
+	border: 0;
+}
+
+a img {
+	border: 0;
+}
+
+.clear {
+	clear: both;
+}
+
+/* General Styling and Structure
+--------------------------------------------------------------------------------*/
+
+body {
+	background: url(bodybg.jpg);
+	font-family: Trebuchet MS, arial, sans-serif;
+	font-size: 12px;
+	color: #273b4a;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: #4984c9;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #84afe1;
+	text-decoration: none;
+}
+
+p {
+	line-height: 1.5;
+	color: #273b4a;
+	font-size: 13px;
+	padding: .5em 0;
+}
+
+h1 {
+	font-size: 24px;
+	color: #273b4a;
+	padding: .5em 0 .2em 0;
+}
+
+h2 {
+	font-size: 20px;
+	color: #273b4a;
+	padding: .5em 0 .2em 0;
+}
+
+blockquote {
+	font-style:italic;
+	border-left:4px solid #ccc;
+	margin:10px 0 10px 0;
+	padding-left:20px;
+	line-height:1.5;
+	color:#666;
+}
+
+#wrapper {
+	padding: 0 0 33px 0;
+	background: url(wrapperbg.jpg) center repeat-y;
+}
+
+#container {
+	width: 960px;
+	margin: 0 auto;
+}
+
+.splash-page #container {
+	width: 600px;
+	margin: 0 auto;
+}
+
+#header,
+#header a {
+	color: #4984c9;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+#header a:hover {
+	color: #84afe1;
+}
+
+#logo,
+#logo a {
+	color: #fff;
+	font-size: 30px;
+}
+
+#banner {
+	width: 960px;
+	margin: 0 0 9px 0;
+}
+
+#content {
+	width: 914px;
+	height: auto !important;
+	min-height: 400px;
+	background: #efe8dc;
+	border-bottom: 1px solid #cecece;
+	padding: 20px 23px 20px 23px;
+}
+
+#banner a {
+	color: #84afe1;
+}
+
+#banner a:hover {
+	color: #4984c9;
+}
+
+#content a:hover {
+	color: #569def;
+}
+
+/* Navigation
+--------------------------------------------------------------------------------*/
+
+#navigation {
+	position: relative;
+	width: 960px;
+	height: 47px;
+	z-index: 2;
+	margin: 0 0 0 0;
+	background: url(navigationbg.jpg) top repeat-x;
+}
+
+#navigation li {
+	float: left;
+	z-index: 2;
+}
+
+#navigation li a {
+	position: relative;
+	display: block;
+	height: 28px;
+	color: #fff;
+	float: left;
+	z-index: 2;
+	padding: 10px 18px 0 18px;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+#navigation li a:hover,
+#navigation li#active a {
+	color: #0c1b2c;
+	background: #6a95c7;
+	text-decoration: none;
+}
+
+/* Navigation Drop-Down Menu Customization
+--------------------------------------------------------------------------------*/
+
+#wsite-menus .wsite-menu li a {
+	background: #6A96C7;
+	border-top: none;
+	border-bottom: 1px solid #7BA1CE;
+	border-right: none;
+	border-left: none;
+	padding: 7px 8px 7px 12px;
+	color: #fff;
+}
+
+#wsite-menus .wsite-menu li a:hover {
+	background: #335E93;
+	color: #fff;
+}
+
+/* Header Area
+----------------------------------------------------------------------------*/
+
+#header {
+	width: 100%;
+	height: 100px;
+}
+
+#header,
+#header table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+#header td {
+	vertical-align: middle;
+	text-align: left;
+}
+
+#logo {
+	padding: 25px 0 25px 23px;
+}
+
+#header-right {
+	padding: 0 23px 0 10px;
+}
+
+#header-right table {
+	float: right;
+	width: 1px;
+}
+
+#header-right td {
+	padding: 0;
+}
+
+/* TOP RIGHT: Phone Number
+--------------------------------------------------------------------------------*/
+
+#header-right .phone-number .wsite-text {
+	color: #fff;
+	font-size: 14px;
+	font-family: Trebuchet MS;
+	text-decoration: none;
+	display: block;
+	white-space: nowrap;
+	margin: 0 0 0 15px;
+}
+
+/* TOP RIGHT: Content Area
+--------------------------------------------------------------------------------*/
+
+#header-right .wsite-social {
+	vertical-align: middle;
+	margin: 0 0 0 12px;
+}
+
+
+.wsite-social-item {
+	width: 23px;
+	height: 23px;
+	margin: 0 0 0 3px !important;
+	background-image:url(social-grey.png);
+}
+
+.wsite-social-facebook {background-position:0 0;}
+	.wsite-social-facebook:hover {background-position:0 -23px;}
+	.wsite-social-facebook:active {background-position:0 -46px;}
+.wsite-social-pinterest {background-position:-23px 0;}
+	.wsite-social-pinterest:hover {background-position:-23px -23px;}
+	.wsite-social-pinterest:active {background-position:-23px -46px;}
+.wsite-social-twitter {background-position:-46px 0;}
+	.wsite-social-twitter:hover {background-position:-46px -23px;}
+	.wsite-social-twitter:active {background-position:-46px -46px;}
+.wsite-social-linkedin {background-position:-69px 0;}
+	.wsite-social-linkedin:hover {background-position:-69px -23px;}
+	.wsite-social-linkedin:active {background-position:-69px -46px;}
+.wsite-social-mail {background-position:-92px 0;}
+	.wsite-social-mail:hover {background-position:-92px -23px;}
+	.wsite-social-mail:active {background-position:-92px -46px;}
+.wsite-social-rss {background-position:-115px 0;}
+	.wsite-social-rss:hover {background-position:-115px -23px;}
+	.wsite-social-rss:active {background-position:-115px -46px;}
+.wsite-social-flickr {background-position:-138px 0;}
+	.wsite-social-flickr:hover {background-position:-138px -23px;}
+	.wsite-social-flickr:active {background-position:-138px -46px;}
+.wsite-social-plus {background-position:-161px 0;}
+	.wsite-social-plus:hover {background-position:-161px -23px;}
+	.wsite-social-plus:active {background-position:-161px -46px;}
+.wsite-social-vimeo {background-position:-184px 0;}
+	.wsite-social-vimeo:hover {background-position:-184px -23px;}
+	.wsite-social-vimeo:active {background-position:-184px -46px;}
+.wsite-social-yahoo {background-position:-207px 0;}
+	.wsite-social-yahoo:hover {background-position:-207px -23px;}
+	.wsite-social-yahoo:active {background-position:-207px -46px;}
+.wsite-social-youtube {background-position:-230px 0;}
+	.wsite-social-youtube:hover {background-position:-230px -23px;}
+	.wsite-social-youtube:active {background-position:-230px -46px;}
+
+
+/* TOP RIGHT: Search Box
+--------------------------------------------------------------------------------*/
+
+#header-right .wsite-search {
+	vertical-align: middle;
+	margin: 0 0 0 15px;
+}
+
+#header-right .wsite-search-input {
+	width: 157px;
+	height: 18px;
+	border: none;
+	padding: 3px 7px 5px 7px;
+	color: #273b4a;
+	font-size: 12px;
+	background: url(input-bg.png) no-repeat;
+}
+
+#header-right .wsite-search-button {
+	position: relative;
+	width: 36px;
+	height: 27px;
+	border: none;
+	margin: 0;
+	padding: 0;
+	background: url(submit.png) no-repeat;
+}
+
+/* Footer
+--------------------------------------------------------------------------------*/
+
+#footer {
+	width: 910px;
+	font-size: 13px;
+	background: url(footerbg.jpg) repeat-y;
+	padding: 25px 25px 25px 25px;
+	margin: 10px 0 0 0;
+	text-align: right;
+}
+#footer p {font-size:12px;}
+
+#footer,
+#footer p,
+#footer h1,
+#footer h2 {
+	color: #ccc;
+}
+
+.wsite-footer {  /* make sure enough space between element footer and attribution */
+	margin-bottom: 15px;
+}
+
+#footer h2 {
+	font-size:16px;
+	color:#fff;
+	border-bottom:1px solid #ccc;
+	padding-bottom:7px;
+}
+
+#footer blockquote {
+	border-left:4px solid #444;
+	color:#999;
+}
+
+/* Footer Form Customization
+--------------------------------------------------------------------------------*/
+
+.wsite-form-container {
+	margin-top:0px !important;
+	text-align:left !important;
+	color: #999;
+}
+
+.wsite-footer .wsite-form-label {
+	font-size: 1em !important;
+	padding: 5px 0 2px 0 !important;
+	color: #ddd;
+}
+
+.wsite-footer .wsite-form-field {
+	width:330px !important;
+}
+
+.wsite-footer .form-radio-container {
+	font-size:1em !important;
+	color: #ccc;
+}
+
+.wsite-footer .wsite-form-input {
+	font-size: 1em !important;
+	width: 100% !important;
+}
+
+.wsite-footer .form-select {
+	width: 100% !important;
+}
+
+
+/* PAGE TYPE: tall-header
+--------------------------------------------------------------------------------*/
+
+.tall-header-page .wsite-header {  /* the user-editable image */
+	width: 960px;
+	height: 270px;
+	background: url(banner-tall.jpg) no-repeat;
+}
+
+/* PAGE TYPE: short-header
+--------------------------------------------------------------------------------*/
+
+.short-header-page .wsite-header {  /* the user-editable image */
+	width: 960px;
+	height: 150px;
+	background: url(banner-short.jpg) no-repeat;
+}
+
+/* PAGE TYPE: landing
+--------------------------------------------------------------------------------*/
+
+#banner-left {
+	float: left;
+	width: 509px;
+	height: 310px;
+	padding: 0 35px 0 0;
+}
+
+.landing-page .wsite-header {
+	width: 509px;
+	height: 310px;
+	background: url(banner-landing.jpg) no-repeat;
+}
+
+.landing-banner-outer {
+	display: table;
+	#position: relative;
+	overflow: hidden;
+}
+
+.landing-banner-mid {
+	#position: absolute;
+	#top: 50%;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.landing-banner-inner {
+	#position: relative;
+	#top: -50%;
+}
+
+#bannerright {
+	float: left;
+	width: 390px;
+	height: 310px;
+	padding: 0 0 0 0;
+}
+
+#bannerright h2 {
+	color: #fff;
+	font-size: 30px;
+	padding: 0 0 0 0;
+	line-height: 1.1;
+}
+
+#bannerright p {
+	color: #fff;
+	font-size: 16px;
+	padding: 20px 0;
+	line-height: 140%;
+}
+
+/* PAGE TYPE: splash
+--------------------------------------------------------------------------------*/
+
+.splash-page #header-right {
+	padding: 0;
+	margin: 0;
+}
+
+.splash-page #content {
+	width: 554px;
+	padding: 20px 23px 20px 23px;
+}
+
+.splash-page .title {
+	width: 600px;
+	padding: 0;
+}
+
+.splash-page #wrapper {
+	width: 642px;
+	margin: 0 auto;
+	padding: 0 0 33px 42px;
+}
+
+.splash-page #footer {
+	width: 550px;
+	padding: 10px 25px 10px 25px;
+}
+
+.splash-page .wsite-header {
+	width: 600px;
+	height: 150px;
+	border: none;
+	padding: 5px 0 0 0;
+	background: url(banner-splash.jpg) no-repeat;
+}
+
+/* Form Customization
+--------------------------------------------------------------------------------*/
+
+.wsite-form-label {
+	display: inline-block;
+	color: #333333;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 10px 0 3px 0;
+}
+
+.form-radio-container {
+	color: #656565;
+	font-size: 12px;
+}
+
+.wsite-form-input, .wsite-search-element-input {
+	background: #fefefe url(form-inputbg.gif) top repeat-x;
+	color: #656565;
+	border: 1px solid #D2D2D2;
+	padding: 5px;
+	font-size:12px;
+}
+
+.form-select {
+	width: 380px;
+	background: #fefefe;
+	color: #656565;
+	border: 1px solid #D2D2D2;
+}
+
+/* Buttons
+--------------------------------------------------------------------------------*/
+
+/* small */
+
+.wsite-button {
+	color: #fff !important;
+	height: 34px;
+	display: inline-block;
+	font-size: 14px;
+	border: none;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	padding: 0 10px 0 0;
+	background: url(button_small_blue.png) no-repeat 100% -105px;
+	text-shadow:0 -1px 0 rgba(0,0,0,0.7);
+}
+
+.wsite-button:hover {
+	background-position: 100% -140px;
+}
+
+.wsite-button:active {
+	background-position: 100% -175px;
+}
+
+.wsite-button-inner {
+	color: #fff !important;
+	height: 34px;
+	line-height: 34px;
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	border: none;
+	text-decoration: none;
+	padding: 0 10px 0 20px;
+	background: url(button_small_blue.png) no-repeat 0 0;
+}
+
+.wsite-button:hover .wsite-button-inner {
+	background-position: 0 -35px;
+}
+
+.wsite-button:active .wsite-button-inner {
+	background-position: 0 -70px;
+}
+
+/* large */
+
+.wsite-button-large {
+	color: #fff !important;
+	height: 41px;
+	background: url(button_large_blue.png) no-repeat 100% -126px;
+	padding: 0 10px 0 0;
+}
+
+.wsite-button-large:hover {
+	background-position: 100% -168px;
+}
+
+.wsite-button-large:active {
+	background-position: 100% -210px;
+}
+
+.wsite-button-large .wsite-button-inner {
+	color: #fff !important;
+	height: 40px;
+	line-height: 41px;
+	padding: 1px 10px 0 20px;
+	background: url(button_large_blue.png) no-repeat 0 0;
+}
+
+.wsite-button-large:hover .wsite-button-inner {
+	background-position: 0 -42px;
+}
+
+.wsite-button-large:active .wsite-button-inner {
+	background-position: 0 -84px;
+}
+
+/* highlight */
+
+/*
+Making the highlighted versions of the buttons is easy because we just need
+to switch out the background images. This works because the different button
+states (normal, :hover, :active) have their sprite coordinates in the same places.
+*/
+
+.wsite-button-large.wsite-button-highlight {
+	color: #38302a !important;
+	background-image: url(button_large_tan.png);
+	text-shadow:0 1px 0 rgba(255,255,255,0.4);
+}
+
+.wsite-button-large.wsite-button-highlight .wsite-button-inner {
+	color: #38302a !important;
+	background-image: url(button_large_tan.png);
+}
+
+.wsite-button-highlight {
+	color: #38302a !important;
+	background-image: url(button_small_tan.png);
+}
+
+.wsite-button-highlight .wsite-button-inner {
+	color: #38302a !important;
+	background-image: url(button_small_tan.png);
+}
